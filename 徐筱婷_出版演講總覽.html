@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>出版與演講總覽｜徐筱婷</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600&family=Noto+Sans+TC:wght@300;400;500&family=DM+Serif+Display&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1520;
+    --ink-light: #4a4358;
+    --ink-muted: #8a7fa0;
+    --paper: #faf8f5;
+    --cream: #f3efe8;
+    --purple: #5b3a8c;
+    --purple-light: #7c5aad;
+    --purple-pale: #ede8f7;
+    --teal: #028090;
+    --teal-pale: #e1f4f6;
+    --rose: #b5405a;
+    --rose-pale: #faedf0;
+    --gold: #9a7230;
+    --gold-pale: #faf3e3;
+    --green: #2e7d4f;
+    --green-pale: #e8f5ee;
+    --border: rgba(91,58,140,0.12);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--paper);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* HEADER */
+  header {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 4rem 2rem 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -80px;
+    width: 320px; height: 320px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(91,58,140,0.35) 0%, transparent 70%);
+  }
+  header::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: 10%;
+    width: 200px; height: 200px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(2,128,144,0.2) 0%, transparent 70%);
+  }
+  .header-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+  .header-eyebrow {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-weight: 300;
+    font-size: 12px;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    margin-bottom: 1rem;
+    color: rgba(255,255,255,0.5);
+  }
+  .header-name {
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 600;
+    font-size: clamp(2rem, 5vw, 3rem);
+    line-height: 1.15;
+    margin-bottom: 0.5rem;
+    color: #fff;
+  }
+  .header-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.05em;
+    margin-bottom: 2rem;
+  }
+  .header-role span { margin: 0 6px; opacity: 0.4; }
+
+  .stats-row {
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: #fff;
+    line-height: 1;
+  }
+  .stat-label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.45);
+    letter-spacing: 0.1em;
+  }
+
+  /* MAIN */
+  main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 3rem 2rem 5rem;
+  }
+
+  /* FILTER */
+  .filter-bar {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .filter-btn {
+    font-family: 'Noto Sans TC', sans-serif;
+    font-size: 12px;
+    padding: 6px 16px;
+    border-radius: 20px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--ink-muted);
+    cursor: pointer;
+    transition: all 0.2s;
+    letter-spacing: 0.03em;
+  }
+  .filter-btn:hover { border-color: var(--purple); color: var(--purple); }
+  .filter-btn.active {
+    background: var(--purple);
+    border-color: var(--purple);
+    color: #fff;
+  }
+
+  /* YEAR GROUP */
+  .year-group { margin-bottom: 3.5rem; }
+  .year-label {
+    font-family: 'DM Serif Display', serif;
+    font-size: 3.5rem;
+    color: var(--purple-pale);
+    line-height: 1;
+    margin-bottom: -0.5rem;
+    position: relative;
+    z-index: 0;
+    user-select: none;
+  }
+
+  /* ITEM CARD */
+  .item {
+    position: relative;
+    z-index: 1;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    margin-bottom: 10px;
+    background: #fff;
+    transition: box-shadow 0.2s, transform 0.2s;
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    animation: fadeUp 0.4s ease both;
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .item:hover {
+    box-shadow: 0 4px 20px rgba(91,58,140,0.1);
+    transform: translateY(-1px);
+  }
+  .item.hidden { display: none; }
+
+  .item-icon {
+    flex-shrink: 0;
+    width: 36px; height: 36px;
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+    margin-top: 2px;
+  }
+  .icon-book  { background: var(--purple-pale); }
+  .icon-talk  { background: var(--teal-pale); }
+  .icon-intl  { background: var(--gold-pale); }
+  .icon-media { background: var(--rose-pale); }
+
+  .item-body { flex: 1; min-width: 0; }
+  .item-top {
+    display: flex; align-items: flex-start;
+    gap: 8px; flex-wrap: wrap;
+    margin-bottom: 5px;
+  }
+  .item-title {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14.5px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.5;
+    flex: 1; min-width: 0;
+  }
+  .item-title a {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s;
+  }
+  .item-title a:hover { border-color: var(--purple); color: var(--purple); }
+
+  .cat-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    border-radius: 10px;
+    white-space: nowrap;
+    font-weight: 500;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .badge-book  { background: var(--purple-pale); color: var(--purple); }
+  .badge-talk  { background: var(--teal-pale);   color: var(--teal); }
+  .badge-intl  { background: var(--gold-pale);   color: var(--gold); }
+  .badge-media { background: var(--rose-pale);   color: var(--rose); }
+  .badge-advocacy { background: var(--green-pale); color: var(--green); }
+  .icon-advocacy { background: var(--green-pale); }
+
+  .item-meta {
+    font-size: 12px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+  }
+  .item-meta .authors { color: var(--ink-light); margin-bottom: 1px; }
+  .item-meta .venue { font-style: italic; }
+
+  /* LEGEND */
+  .legend {
+    display: flex; gap: 16px; flex-wrap: wrap;
+    margin-bottom: 2rem;
+    font-size: 12px;
+    color: var(--ink-muted);
+  }
+  .legend-item { display: flex; align-items: center; gap: 6px; }
+  .legend-dot { width: 10px; height: 10px; border-radius: 3px; }
+
+  /* FOOTER */
+  footer {
+    text-align: center;
+    padding: 2rem;
+    font-size: 11px;
+    color: var(--ink-muted);
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="header-inner">
+    <p class="header-eyebrow">出版與演講總覽 · Publications & Talks</p>
+    <h1 class="header-name">徐筱婷</h1>
+    <p class="header-role">社工師<span>｜</span>培訓師<span>｜</span>性別暴力防治實務工作者</p>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-num" id="s-total">19</span><span class="stat-label">項出版與演講</span></div>
+      <div class="stat"><span class="stat-num">5</span><span class="stat-label">年跨度</span></div>
+      <div class="stat"><span class="stat-num">2</span><span class="stat-label">國際發表</span></div>
+      <div class="stat"><span class="stat-num">3</span><span class="stat-label">出版品</span></div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="legend">
+    <div class="legend-item"><div class="legend-dot" style="background:#ede8f7;border:1px solid #5b3a8c"></div>出版品</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e1f4f6;border:1px solid #028090"></div>國內演講/研討</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#faf3e3;border:1px solid #9a7230"></div>國際發表</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#faedf0;border:1px solid #b5405a"></div>媒體/專欄</div>
+    <div class="legend-item"><div class="legend-dot" style="background:#e8f5ee;border:1px solid #2e7d4f"></div>倡議實績</div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-cat="all">全部 <span id="count-all"></span></button>
+    <button class="filter-btn" data-cat="book">出版品</button>
+    <button class="filter-btn" data-cat="talk">國內演講</button>
+    <button class="filter-btn" data-cat="intl">國際發表</button>
+    <button class="filter-btn" data-cat="media">媒體/專欄</button>
+    <button class="filter-btn" data-cat="advocacy">倡議實績</button>
+  </div>
+
+  <div id="list"></div>
+</main>
+
+<footer>徐筱婷 · 勵馨基金會多重歧視性別暴力防治中心 · 資料整理至 2026 年</footer>
+
+<script>
+const data = [
+  {
+    year: 2026,
+    cat: 'talk',
+    authors: '陳鶴勳、徐筱婷、鄭卉君、郭旆君',
+    title: '重構安全與賦權：從反壓迫視角探討家內性侵被害人戶籍查調限制修法與社工倡議實踐',
+    venue: '2026 年臺灣社會工作專業人員協會年會暨「跨越世代・連結未來：社會工作的韌性、創新與團結」研討會',
+    link: 'https://www.goh.org.tw/services/multiple-discrimination-and-gender-violence-prevention-center/'
+  },
+  {
+    year: 2025,
+    cat: 'intl',
+    authors: 'Chen, H-S., Hsu, H-T.',
+    title: 'Services for LGBTQ+ Survivors of Technology-Facilitated Gender-Based Violence (TF-GBV) in Taiwan',
+    venue: 'RightsCon, Taipei, Taiwan',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2025,
+    cat: 'media',
+    authors: '徐筱婷',
+    title: '國際不再恐懼同性戀、跨性別與雙性戀日—跨性別社工服務',
+    venue: '同志熱線',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2025,
+    cat: 'media',
+    authors: '徐筱婷',
+    title: '穿透櫃子的微光：在 #MeToo 浪潮後的療癒與自我修復之旅',
+    venue: '美麗佳人專欄',
+    link: 'https://www.marieclaire.com.tw/relationship/secret-talk/88830'
+  },
+  {
+    year: 2024,
+    cat: 'media',
+    authors: '徐筱婷',
+    title: '愛情裡有浪漫劇本可依循嗎？先學習讓彼此在舒適情況下，經營自在關係',
+    venue: '美麗佳人專欄',
+    link: 'https://www.marieclaire.com.tw/relationship/secret-talk/79160'
+  },
+  {
+    year: 2024,
+    cat: 'advocacy',
+    authors: '陳鶴勳、徐筱婷',
+    title: '家暴防治法第58條之2修法倡議：家內性侵被害人戶籍查調限制',
+    venue: '勵馨基金會觀點 · 倡議文章',
+    link: 'https://www.goh.org.tw/perspectives/dvpa_58-2_-amending_the_law/'
+  },
+  {
+    year: 2024,
+    cat: 'intl',
+    authors: 'Cheng, H-C., Chen, H-S., Hsu, H-T., & Guo, P.',
+    title: 'The multiple discrimination and gender-based violence prevention centre: Pioneering LGBTQ+ affirmative social work and gender-based violence services in Taiwan',
+    venue: 'SVRI Forum, Cape Town, South Africa',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2024,
+    cat: 'talk',
+    authors: '徐筱婷',
+    title: '彩虹創口－多元性別與創傷復元',
+    venue: '【台大論壇】彩虹創口：探索多元性別學生的心靈創傷與轉化',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2024,
+    cat: 'talk',
+    authors: '陳鶴勳、鄭卉君、徐筱婷、郭旆君',
+    title: '交織理論對台灣社會工作實務之啟發',
+    venue: '2024 年臺灣社會工作專業人員協會年會暨「深耕實務 厚植量能－開創臺灣社會工作新前景」研討會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'book',
+    authors: '陳鶴勳、徐筱婷、鄭卉君、郭旆君',
+    title: '暗夜裡的北極星番外篇－多元性別Ｘ性別暴力實務筆記',
+    venue: '新北市：勵馨基金會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '徐筱婷',
+    title: '多元性別服務與庇護服務經驗',
+    venue: '新北市家防中心、現代婦女基金會「112 年多元性別親密暴力暨數位性別暴力」實務論壇',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '陳鶴勳、徐筱婷',
+    title: '跨性別者的需求、服務內涵、經驗與反思',
+    venue: '台灣伴侶權益推動聯盟「友善跨性別社會服務與實務經驗」交流論壇',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '陳鶴勳、徐筱婷',
+    title: '多元性別友善的性暴力復原之路－社工與諮商服務的跨網絡合作',
+    venue: '勵馨基金會「男性／多元性別性侵害防治」網絡研討會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '陳鶴勳、鄭卉君、徐筱婷',
+    title: '多元交織處境中的同志－歧視與暴力',
+    venue: '彩虹平權大平台「後同婚時代的現在與未來─同婚過後 4 週年」研討會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '陳鶴勳、鄭卉君、徐筱婷',
+    title: '同婚姻親家暴之案例與實務',
+    venue: '台灣伴侶權益推動聯盟「同婚四周年：婚姻尚未平權」座談會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2023,
+    cat: 'talk',
+    authors: '鄭卉君、徐筱婷、陳鶴勳',
+    title: '「多重歧視性別暴力防治中心」方案',
+    venue: '新北市社會工作師公會「新北市社會工作專業永續發展目標（SDGs）實踐與展望」研討會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+  {
+    year: 2022,
+    cat: 'book',
+    authors: '陳鶴勳、鄭卉君、徐筱婷',
+    title: '暗夜裡的北極星－多元性別Ｘ性別暴力實務手冊',
+    venue: '新北市：勵馨基金會',
+    link: 'https://www.goh.org.tw/pr-category/publications/'
+  },
+];
+
+const icons = { book:'📖', talk:'🎤', intl:'🌏', media:'✍️', advocacy:'📣' };
+const badgeClass = { book:'badge-book', talk:'badge-talk', intl:'badge-intl', media:'badge-media', advocacy:'badge-advocacy' };
+const iconClass  = { book:'icon-book',  talk:'icon-talk',  intl:'icon-intl',  media:'icon-media',  advocacy:'icon-advocacy' };
+const catLabel   = { book:'出版品', talk:'國內演講／研討', intl:'國際發表', media:'媒體／專欄', advocacy:'倡議實績' };
+
+let currentCat = 'all';
+
+function render() {
+  const list = document.getElementById('list');
+  list.innerHTML = '';
+
+  const years = [...new Set(data.map(d => d.year))].sort((a,b) => b-a);
+  let visibleTotal = 0;
+
+  years.forEach(yr => {
+    const items = data.filter(d => d.year === yr && (currentCat === 'all' || d.cat === currentCat));
+    if (!items.length) return;
+    visibleTotal += items.length;
+
+    const group = document.createElement('div');
+    group.className = 'year-group';
+    group.innerHTML = `<div class="year-label">${yr}</div>`;
+
+    items.forEach((item, i) => {
+      const card = document.createElement('div');
+      card.className = 'item';
+      card.style.animationDelay = (i * 0.05) + 's';
+      const titleText = (item.cat === 'book' || item.cat === 'talk' || item.cat === 'media')
+        ? `〈${item.title}〉` : item.title;
+      card.innerHTML = `
+        <div class="item-icon ${iconClass[item.cat]}">${icons[item.cat]}</div>
+        <div class="item-body">
+          <div class="item-top">
+            <div class="item-title">
+              <a href="${item.link}" target="_blank" rel="noopener">${titleText}</a>
+            </div>
+            <span class="cat-badge ${badgeClass[item.cat]}">${catLabel[item.cat]}</span>
+          </div>
+          <div class="item-meta">
+            <div class="authors">${item.authors}</div>
+            <div class="venue">${item.venue}</div>
+          </div>
+        </div>`;
+      group.appendChild(card);
+    });
+
+    list.appendChild(group);
+  });
+
+  document.getElementById('s-total').textContent = visibleTotal;
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentCat = btn.dataset.cat;
+    render();
+  });
+});
+
+render();
+</script>
+</body>
+</html>
