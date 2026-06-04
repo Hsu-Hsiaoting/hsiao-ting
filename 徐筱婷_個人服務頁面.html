@@ -1,0 +1,1023 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>徐筱婷｜社工師・培訓師・性別暴力防治</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@300;400;600;900&family=Noto+Sans+TC:wght@300;400;500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --night: #0d1117;
+  --dusk: #161b22;
+  --purple: #58a6ff;
+  --purple-bright: #79c0ff;
+  --purple-pale: rgba(88,166,255,0.1);
+  --gold: #3b82f6;
+  --gold-pale: rgba(59,130,246,0.1);
+  --paper: #0d1117;
+  --paper-warm: #161b22;
+  --ink: #e6edf3;
+  --ink-mid: #b1bac4;
+  --ink-muted: #8b949e;
+  --teal: #3b82f6;
+  --rose: #58a6ff;
+  --border-light: rgba(88,166,255,0.15);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans TC', sans-serif;
+  background: #0d1117;
+  color: var(--ink);
+  overflow-x: hidden;
+}
+
+/* ── HERO ─────────────────────────────────────────────── */
+.hero {
+  background: var(--night);
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 80% 20%, rgba(88,166,255,0.15) 0%, transparent 60%),
+    radial-gradient(ellipse 40% 60% at 10% 80%, rgba(59,130,246,0.08) 0%, transparent 55%),
+    radial-gradient(ellipse 30% 40% at 50% 50%, rgba(88,166,255,0.05) 0%, transparent 50%);
+}
+
+/* subtle grain */
+.hero-bg::after {
+  content: '';
+  position: absolute; inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.hero-inner {
+  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 3rem;
+  align-items: center;
+  padding: 5rem 2rem 3rem;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+.hero-text { display: flex; flex-direction: column; }
+.hero-photo-wrap {
+  flex-shrink: 0;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.3s ease forwards;
+}
+.hero-photo {
+  width: 220px;
+  height: 280px;
+  object-fit: cover;
+  object-position: center top;
+  border-radius: 120px 120px 80px 80px;
+  border: 3px solid rgba(74,168,204,0.4);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.4);
+  display: block;
+}
+@media (max-width: 640px) {
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-photo-wrap { order: -1; display: flex; justify-content: center; }
+  .hero-photo { width: 160px; height: 200px; }
+}
+
+.hero-eyebrow {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-weight: 400;
+  font-size: 15px;
+  letter-spacing: 0.15em;
+  color: var(--purple-bright);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.1s ease forwards;
+}
+
+.hero-name {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 900;
+  font-size: clamp(2.2rem, 7vw, 4rem);
+  line-height: 0.95;
+  color: #e6edf3;
+  letter-spacing: -0.02em;
+  margin-bottom: 1rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.2s ease forwards;
+}
+
+.hero-name span {
+  color: var(--purple-bright);
+  font-style: italic;
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300;
+  font-size: 0.35em;
+  display: block;
+  letter-spacing: 0.08em;
+  margin-top: 0.4rem;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-size: clamp(1.2rem, 3vw, 1.7rem);
+  color: rgba(250,248,244,0.6);
+  line-height: 1.5;
+  max-width: 520px;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.35s ease forwards;
+}
+
+.hero-roles {
+  display: flex; gap: 8px; flex-wrap: wrap;
+  margin-bottom: 3rem;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.45s ease forwards;
+}
+.role-tag {
+  font-size: 15px;
+  padding: 7px 18px;
+  border-radius: 20px;
+  border: 1px solid rgba(74,168,204,0.35);
+  color: var(--purple-bright);
+  background: rgba(45,122,154,0.1);
+  letter-spacing: 0.03em;
+}
+
+.hero-quote {
+  border-left: 2px solid var(--gold);
+  padding-left: 1.25rem;
+  max-width: 500px;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.55s ease forwards;
+}
+.hero-quote p {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 300;
+  font-size: 18px;
+  line-height: 2;
+  color: rgba(230,237,243,0.75);
+}
+
+.hero-scroll {
+  position: relative; z-index: 1;
+  padding: 1.5rem 2rem;
+  text-align: center;
+  opacity: 0;
+  animation: fadeUp 0.8s 0.8s ease forwards;
+}
+.hero-scroll span {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  color: rgba(255,255,255,0.25);
+}
+
+/* ── SECTION BASE ─────────────────────────────────────── */
+section {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 5rem 2rem;
+}
+
+/* Light sections need full-width background */
+.section-about,
+.section-services,
+.section-contact {
+  max-width: 100%;
+  margin: 0;
+  padding: 5rem 0;
+}
+.section-about > .section-label,
+.section-about > .section-title,
+.section-about > .about-grid,
+.section-services > .section-label,
+.section-services > .section-title,
+.section-services > .services-list,
+.section-contact > .section-label,
+.section-contact > .section-title,
+.section-contact > p,
+.section-contact > .contact-grid,
+.section-contact > .contact-list {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+/* section-label must stay flex for the line decoration */
+.section-about > .section-label,
+.section-services > .section-label,
+.section-contact > .section-label {
+  display: flex;
+}
+
+.section-label {
+  font-size: 18px;
+  letter-spacing: 0.1em;
+  color: var(--purple);
+  font-weight: 400;
+  margin-bottom: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--purple);
+}
+
+.section-title {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 600;
+  font-size: clamp(1.8rem, 5vw, 2.6rem);
+  color: var(--ink);
+  line-height: 1.3;
+  margin-bottom: 2.5rem;
+}
+
+/* ── DIVIDER ──────────────────────────────────────────── */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--border-light) 30%, var(--border-light) 70%, transparent);
+}
+
+/* ── ABOUT ────────────────────────────────────────────── */
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 640px) { .about-grid { grid-template-columns: 1fr; } }
+
+.about-text p {
+  font-size: 19px;
+  line-height: 2;
+  color: var(--ink-mid);
+  margin-bottom: 1.25rem;
+}
+.about-text p:last-child { margin-bottom: 0; }
+.about-text strong { color: var(--ink); font-weight: 500; }
+
+.about-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1px;
+  background: var(--border-light);
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.stat-box {
+  background: var(--paper);
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+}
+.stat-box:hover { background: var(--paper-warm); }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2.6rem;
+  font-weight: 600;
+  color: var(--purple);
+  line-height: 1;
+  display: block;
+  margin-bottom: 6px;
+}
+.stat-unit {
+  font-family: 'Noto Sans TC', sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--purple);
+  vertical-align: middle;
+  margin-left: 1px;
+}
+.stat-label {
+  font-size: 15px;
+  color: var(--ink-muted);
+  letter-spacing: 0.05em;
+  line-height: 1.4;
+}
+
+/* ── EXPERTISE ────────────────────────────────────────── */
+.expertise-bg {
+  background: var(--night);
+  padding: 5rem 0;
+}
+.expertise-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.expertise-inner .section-label { color: #79c0ff; }
+.expertise-inner .section-label::before { background: #79c0ff; }
+.expertise-inner .section-title { color: #e6edf3; }
+
+.expertise-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1px;
+  background: rgba(88,166,255,0.15);
+  border: 1px solid rgba(88,166,255,0.15);
+  border-radius: 16px;
+  overflow: hidden;
+}
+.expertise-card {
+  background: var(--dusk);
+  padding: 2rem 1.75rem;
+  transition: background 0.3s;
+  position: relative;
+}
+.expertise-card:hover { background: rgba(88,166,255,0.08); }
+.expertise-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--purple-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s;
+}
+.expertise-card:hover::before { transform: scaleX(1); }
+
+.expertise-icon {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  display: block;
+}
+.expertise-card h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--paper);
+  margin-bottom: 0.75rem;
+  line-height: 1.4;
+}
+.expertise-card p {
+  font-size: 16px;
+  color: rgba(230,237,243,0.65);
+  line-height: 1.8;
+}
+
+/* ── SERVICES ─────────────────────────────────────────── */
+.services-list {
+  display: grid;
+  gap: 1rem;
+}
+.service-item {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1.5rem 1.75rem;
+  border: 1px solid var(--border-light);
+  border-radius: 12px;
+  background: #161b22;
+  transition: box-shadow 0.25s, border-color 0.25s;
+}
+.service-item:hover {
+  box-shadow: 0 8px 32px rgba(88,166,255,0.1);
+  border-color: rgba(88,166,255,0.35);
+}
+.service-item-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.service-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 300;
+  color: var(--purple-bright);
+  opacity: 0.5;
+  flex-shrink: 0;
+}
+.service-body h3 {
+  font-family: 'Noto Serif TC', serif;
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.3;
+  flex: 1;
+}
+.service-body p {
+  font-size: 16px;
+  color: var(--ink-muted);
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
+.service-tag {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  white-space: nowrap;
+  background: rgba(88,166,255,0.1);
+  color: #79c0ff;
+  font-weight: 500;
+  border: 1px solid rgba(88,166,255,0.25);
+  align-self: flex-start;
+}
+.service-tag.enterprise { background: rgba(88,166,255,0.1); color: #79c0ff; border-color: rgba(88,166,255,0.25); }
+.service-tag.training { background: rgba(88,166,255,0.1); color: #79c0ff; border-color: rgba(88,166,255,0.25); }
+
+/* ── PUBLICATIONS STRIP ───────────────────────────────── */
+.pub-strip-bg {
+  background: #0d1117;
+  padding: 4rem 0;
+}
+.pub-strip-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+.pub-list {
+  display: grid;
+  gap: 10px;
+  margin-top: 2rem;
+}
+.pub-item {
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem 1.25rem;
+  background: #161b22;
+  border-radius: 10px;
+  border: 1px solid var(--border-light);
+}
+.pub-year {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  color: var(--purple);
+  font-weight: 600;
+  min-width: 36px;
+  padding-top: 1px;
+}
+.pub-body { flex: 1; }
+.pub-title {
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--ink);
+  line-height: 1.5;
+  margin-bottom: 2px;
+}
+.pub-venue {
+  font-size: 14px;
+  color: var(--ink-muted);
+  font-style: italic;
+}
+.pub-badge {
+  font-size: 13px;
+  padding: 4px 12px;
+  border-radius: 8px;
+  flex-shrink: 0;
+  margin-top: 2px;
+  font-weight: 500;
+}
+.pb-book { background: rgba(88,166,255,0.12); color: #79c0ff; }
+.pb-intl { background: rgba(59,130,246,0.15); color: #93c5fd; }
+.pb-media { background: rgba(210,153,255,0.12); color: #d2a8ff; }
+
+/* ── BELIEF ───────────────────────────────────────────── */
+.belief-bg {
+  background: linear-gradient(135deg, #0a0f14 0%, #0d1520 100%);
+  padding: 6rem 0;
+  position: relative;
+  overflow: hidden;
+}
+.belief-bg::before {
+  content: '';
+  position: absolute;
+  top: -100px; right: -100px;
+  width: 400px; height: 400px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(88,166,255,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.belief-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  text-align: center;
+  position: relative; z-index: 1;
+}
+.belief-inner blockquote {
+  font-family: 'Noto Serif TC', serif;
+  font-weight: 300;
+  font-size: clamp(0.9rem, 2vw, 1.1rem);
+  line-height: 2;
+  color: rgba(250,248,244,0.85);
+  margin-bottom: 2rem;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.belief-inner blockquote em {
+  color: var(--gold);
+  font-style: normal;
+}
+.belief-source {
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+  letter-spacing: 0.1em;
+}
+
+/* ── CONTACT ──────────────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-top: 2.5rem;
+}
+@media (max-width: 540px) { .contact-grid { grid-template-columns: 1fr; } }
+
+.contact-card {
+  padding: 2rem;
+  border-radius: 14px;
+  border: 1px solid var(--border-light);
+  background: #161b22;
+  text-decoration: none;
+  transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.contact-card:hover {
+  box-shadow: 0 8px 32px rgba(88,166,255,0.12);
+  transform: translateY(-3px);
+  border-color: rgba(88,166,255,0.4);
+}
+.contact-card.primary {
+  background: #0d1520;
+  border-color: var(--purple-bright);
+}
+.contact-icon { font-size: 1.5rem; }
+.contact-label {
+  font-size: 13px;
+  letter-spacing: 0.1em;
+  color: var(--ink-muted);
+  font-weight: 500;
+}
+.contact-card.primary .contact-label { color: rgba(255,255,255,0.4); }
+.contact-value {
+  font-size: 18px;
+  color: var(--ink);
+  font-weight: 500;
+}
+.contact-card.primary .contact-value { color: var(--paper); }
+.contact-note {
+  font-size: 15px;
+  color: var(--ink-muted);
+  line-height: 1.5;
+}
+.contact-card.primary .contact-note { color: rgba(255,255,255,0.4); }
+
+/* ── FOOTER ───────────────────────────────────────────── */
+footer {
+  background: var(--night);
+  padding: 2rem;
+  text-align: center;
+}
+footer p {
+  font-size: 11px;
+  color: rgba(255,255,255,0.2);
+  letter-spacing: 0.1em;
+}
+
+/* ── LIGHT SECTIONS (about / services / contact) ─────── */
+.section-about,
+.section-services,
+.section-contact {
+  background: #eff6ff;
+  max-width: 100%;
+  padding: 5rem 0;
+}
+.section-about > *,
+.section-services > *,
+.section-contact > * {
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+/* override section base padding/max-width for full-width bg */
+.section-about { padding: 5rem 0; }
+.section-services { padding: 5rem 0; }
+.section-contact { padding: 5rem 0; }
+
+/* Deep text on light blue */
+.section-about .section-label,
+.section-services .section-label,
+.section-contact .section-label {
+  color: #1e40af;
+}
+.section-about .section-label::before,
+.section-services .section-label::before,
+.section-contact .section-label::before { background: #1e40af; }
+
+.section-about .section-title,
+.section-services .section-title,
+.section-contact .section-title { color: #0f172a; }
+
+.section-about .about-text p { color: #1e3a5f; }
+.section-about .about-text strong { color: #0f172a; }
+
+.section-about .stat-box { background: #dbeafe; }
+.section-about .stat-box:hover { background: #bfdbfe; }
+.section-about .stat-num { color: #1d4ed8; }
+.section-about .stat-label { color: #1e3a5f; }
+.section-about .about-stats {
+  background: rgba(30,64,175,0.1);
+  border-color: rgba(30,64,175,0.15);
+}
+
+/* Services on light blue */
+.section-services .service-item {
+  background: #dbeafe;
+  border-color: rgba(30,64,175,0.15);
+}
+.section-services .service-item:hover {
+  background: #bfdbfe;
+  border-color: rgba(30,64,175,0.35);
+  box-shadow: 0 8px 32px rgba(30,64,175,0.12);
+}
+.section-services .service-body h3 { color: #0f172a; }
+.section-services .service-body p { color: #1e3a5f; }
+.section-services .service-num { color: #1d4ed8; }
+.section-services .service-tag {
+  background: rgba(29,78,216,0.08);
+  color: #1d4ed8;
+  border-color: rgba(29,78,216,0.2);
+}
+.section-services .service-tag.enterprise {
+  background: rgba(29,78,216,0.08);
+  color: #1d4ed8;
+  border-color: rgba(29,78,216,0.2);
+}
+.section-services .service-tag.training {
+  background: rgba(29,78,216,0.08);
+  color: #1d4ed8;
+  border-color: rgba(29,78,216,0.2);
+}
+
+/* Contact on light blue */
+.section-contact p { color: #1e3a5f; }
+.section-contact .contact-card {
+  background: #dbeafe;
+  border-color: rgba(30,64,175,0.15);
+}
+.section-contact .contact-card:hover {
+  background: #bfdbfe;
+  border-color: rgba(30,64,175,0.35);
+  box-shadow: 0 8px 32px rgba(30,64,175,0.12);
+}
+.section-contact .contact-card.primary {
+  background: #1e3a8a;
+  border-color: #60a5fa;
+}
+.section-contact .contact-label { color: #1e40af; }
+.section-contact .contact-value { color: #0f172a; }
+.section-contact .contact-note { color: #1e3a5f; }
+.section-contact .contact-card.primary .contact-label { color: rgba(219,234,254,0.6); }
+.section-contact .contact-card.primary .contact-value { color: #dbeafe; }
+.section-contact .contact-card.primary .contact-note { color: rgba(219,234,254,0.6); }
+
+/* ── CONTACT LIST (simplified) ───────────────────────── */
+.contact-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  border: 1px solid rgba(30,64,175,0.18);
+  border-radius: 14px;
+  overflow: hidden;
+}
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  padding: 1.4rem 1.75rem;
+  background: #dbeafe;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(30,64,175,0.12);
+  transition: background 0.2s;
+}
+.contact-row:last-child { border-bottom: none; }
+.contact-row:hover { background: #bfdbfe; }
+.contact-row-icon { font-size: 1.4rem; flex-shrink: 0; }
+.contact-row-body {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+.contact-row-label {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  color: #1e40af;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+.contact-row-value {
+  font-size: 17px;
+  color: #0f172a;
+  font-weight: 500;
+}
+.contact-row-note {
+  font-size: 14px;
+  color: #4b6a8f;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+@media (max-width: 600px) {
+  .contact-row { flex-wrap: wrap; }
+  .contact-row-note { display: none; }
+}
+
+/* also make sure contact-grid wrapper still works for any remaining usage */
+.expertise-card h3 { color: #e6edf3; }
+.expertise-card p { color: rgba(230,237,243,0.75); }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+</style>
+</head>
+<body>
+
+<!-- ── HERO ─────────────────────────────────────────────── -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-inner">
+    <div class="hero-text">
+      <p class="hero-eyebrow">社工師・培訓師・性別暴力防治實務工作者</p>
+      <h1 class="hero-name">
+        徐筱婷
+        <span>Hsu Hsiao-Ting</span>
+      </h1>
+      <div class="hero-roles">
+        <span class="role-tag">創傷知情服務</span>
+        <span class="role-tag">多元性別友善實務</span>
+        <span class="role-tag">交織性社會工作</span>
+        <span class="role-tag">性暴力防治</span>
+        <span class="role-tag">職場性騷擾顧問</span>
+      </div>
+      <div class="hero-quote">
+        <p>將近八年，我陪著許多遭受家庭暴力、親密關係暴力、性暴力的生命，走過那些因暴力而陷落的時刻，這些經驗讓我深深相信：理解創傷、理解多元，不只是專業技術，更是一種看見人的方式。</p>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>向下了解更多</span>
+  </div>
+</div>
+
+<!-- ── ABOUT ─────────────────────────────────────────────── -->
+<section class="section-about">
+  <div class="section-label reveal">關於我</div>
+  <h2 class="section-title reveal">從前線到培訓，<br>用知識撐開助人的空間</h2>
+  <div class="about-grid">
+    <div class="about-text reveal">
+      <p>曾於政府及<strong>勵馨基金會多重歧視性別暴力防治中心</strong>累積近八年第一線服務經驗，專注於多元性別族群的性別暴力防治服務，亦以交織理論觀點將個案服務經驗，帶入制度內倡議推動家暴法修訂，致力將實務知識轉化為制度改變的力量。</p>
+    </div>
+    <div class="about-stats reveal">
+      <div class="stat-box">
+        <span class="stat-num">8<span class="stat-unit">年</span></span>
+        <span class="stat-label">前線實務經驗</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">17<span class="stat-unit">項</span></span>
+        <span class="stat-label">出版品與演講</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">2<span class="stat-unit">場</span></span>
+        <span class="stat-label">國際學術發表</span>
+      </div>
+      <div class="stat-box">
+        <span class="stat-num">5<span class="stat-unit">所</span></span>
+        <span class="stat-label">大學客座授課</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── EXPERTISE ─────────────────────────────────────────── -->
+<div class="expertise-bg">
+  <div class="expertise-inner">
+    <div class="section-label reveal">專長領域</div>
+    <h2 class="section-title reveal">深耕實務，<br>跨越專業與大眾的距離</h2>
+    <div class="expertise-grid reveal">
+      <div class="expertise-card">
+        <span class="expertise-icon">🌿</span>
+        <h3>創傷知情陪伴服務</h3>
+        <p>以創傷知情知識理解受害者的創傷情緒，協助助人工作者能夠友善回應情緒的工作心法。</p>
+      </div>
+      <div class="expertise-card">
+        <span class="expertise-icon">🏳️‍🌈</span>
+        <h3>多元性別友善實務</h3>
+        <p>跨性別、同志、非二元性別族群的服務模式，辨識身分虐待與多重歧視處境。</p>
+      </div>
+      <div class="expertise-card">
+        <span class="expertise-icon">⚖️</span>
+        <h3>交織性社會工作</h3>
+        <p>以交織理論分析個案的多重身分處境，突破「加害/被害」二元框架的服務思維。</p>
+      </div>
+      <div class="expertise-card">
+        <span class="expertise-icon">🔒</span>
+        <h3>職場性騷擾防治</h3>
+        <p>#Metoo運動後投入性騷擾被害人服務，陪伴被害人從急性創傷走向復原。</p>
+      </div>
+      <div class="expertise-card">
+        <span class="expertise-icon">🌸</span>
+        <h3>性暴力防治</h3>
+        <p>性騷擾、性侵害的辨識與因應，受暴者的創傷復原陪伴，以及跨網絡系統合作的服務模式。</p>
+      </div>
+      <div class="expertise-card">
+        <span class="expertise-icon">🤝</span>
+        <h3>親密關係暴力防治</h3>
+        <p>同志親密暴力、家內性侵、複雜性創傷個案的服務介入與重要他人工作。</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── SERVICES ─────────────────────────────────────────── -->
+<section class="section-services">
+  <div class="section-label reveal">提供服務</div>
+  <h2 class="section-title reveal">我能為你做什麼</h2>
+  <div class="services-list">
+    <div class="service-item reveal">
+      <div class="service-item-header">
+        <span class="service-num">01</span>
+        <div class="service-body"><h3>企業職場性騷擾培訓與顧問</h3></div>
+      </div>
+      <div class="service-body">
+        <p>為企業提供性騷擾知能訓練、協助建立性騷擾程序與風險評估，以及事件發生後的組織修復顧問服務。</p>
+      </div>
+      <span class="service-tag enterprise">企業顧問</span>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-item-header">
+        <span class="service-num">02</span>
+        <div class="service-body"><h3>專業人員培訓工作坊</h3></div>
+      </div>
+      <div class="service-body">
+        <p>為社工、諮商師、醫護、教育人員提供創傷知情、多元性別友善實務、交織性社會工作等模組化培訓課程，半日至全日皆可規劃。</p>
+      </div>
+      <span class="service-tag training">專業培訓</span>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-item-header">
+        <span class="service-num">03</span>
+        <div class="service-body"><h3>社區與大眾教育演講</h3></div>
+      </div>
+      <div class="service-body">
+        <p>面向一般民眾、學生、社區志工的性別平等、性別暴力防治、多元性別認識等主題演講，語言平易近人，以真實案例與生命信念打動聽眾。</p>
+      </div>
+      <span class="service-tag">社區演講</span>
+    </div>
+    <div class="service-item reveal">
+      <div class="service-item-header">
+        <span class="service-num">04</span>
+        <div class="service-body"><h3>個案督導與諮詢</h3></div>
+      </div>
+      <div class="service-body">
+        <p>針對助人工作者提供性別暴力相關個案的督導諮詢，協助釐清服務方向、處理複雜案型與工作者自我照顧。</p>
+      </div>
+      <span class="service-tag">督導諮詢</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ── SELECTED PUBLICATIONS ─────────────────────────────── -->
+<div class="pub-strip-bg">
+  <div class="pub-strip-inner">
+    <div class="section-label reveal">部分出版與發表</div>
+    <h2 class="section-title reveal">知識生產，<br>是倡議的另一種形式</h2>
+    <div class="pub-list">
+      <div class="pub-item reveal">
+        <span class="pub-year">2026</span>
+        <div class="pub-body">
+          <p class="pub-title">重構安全與賦權：從反壓迫視角探討家內性侵被害人戶籍查調限制修法與社工倡議實踐</p>
+          <p class="pub-venue">臺灣社會工作專業人員協會年會</p>
+        </div>
+        <span class="pub-badge pb-book">研討會</span>
+      </div>
+      <div class="pub-item reveal">
+        <span class="pub-year">2025</span>
+        <div class="pub-body">
+          <p class="pub-title">Services for LGBTQ+ Survivors of Technology-Facilitated Gender-Based Violence in Taiwan</p>
+          <p class="pub-venue">RightsCon, Taipei, Taiwan</p>
+        </div>
+        <span class="pub-badge pb-intl">國際發表</span>
+      </div>
+      <div class="pub-item reveal">
+        <span class="pub-year">2024</span>
+        <div class="pub-body">
+          <p class="pub-title">The multiple discrimination and gender-based violence prevention centre: Pioneering LGBTQ+ affirmative social work in Taiwan</p>
+          <p class="pub-venue">SVRI Forum, Cape Town, South Africa</p>
+        </div>
+        <span class="pub-badge pb-intl">國際發表</span>
+      </div>
+      <div class="pub-item reveal">
+        <span class="pub-year">2023</span>
+        <div class="pub-body">
+          <p class="pub-title">暗夜裡的北極星番外篇——多元性別Ｘ性別暴力實務筆記</p>
+          <p class="pub-venue">勵馨基金會出版</p>
+        </div>
+        <span class="pub-badge pb-book">出版品</span>
+      </div>
+      <div class="pub-item reveal">
+        <span class="pub-year">2022</span>
+        <div class="pub-body">
+          <p class="pub-title">暗夜裡的北極星－多元性別Ｘ性別暴力實務手冊</p>
+          <p class="pub-venue">勵馨基金會出版</p>
+        </div>
+        <span class="pub-badge pb-book">出版品</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ── CONTACT ─────────────────────────────────────────────── -->
+<section class="section-contact">
+  <div class="section-label reveal">聯絡方式</div>
+  <h2 class="section-title reveal">想繼續這個對話？</h2>
+  <p class="reveal" style="font-size:18px;color:#1e3a5f;line-height:1.8;max-width:480px;margin-bottom:2rem;">無論是演講邀約、企業培訓合作、督導諮詢，或者你只是想聊聊——都歡迎聯絡。</p>
+  <div class="contact-list">
+    <a href="mailto:goh1995@goh.org.tw" class="contact-row reveal">
+      <span class="contact-row-icon">✉️</span>
+      <div class="contact-row-body">
+        <span class="contact-row-label">Email</span>
+        <span class="contact-row-value">goh1995@goh.org.tw</span>
+      </div>
+      <span class="contact-row-note">演講邀約・企業合作・督導諮詢</span>
+    </a>
+    <a href="https://www.goh.org.tw/services/multiple-discrimination-and-gender-violence-prevention-center/" target="_blank" class="contact-row reveal">
+      <span class="contact-row-icon">🏢</span>
+      <div class="contact-row-body">
+        <span class="contact-row-label">服務機構</span>
+        <span class="contact-row-value">勵馨基金會・多重歧視性別暴力防治中心</span>
+      </div>
+      <span class="contact-row-note">點擊前往官網</span>
+    </a>
+    <a href="徐筱婷_出版演講總覽.html" target="_blank" class="contact-row reveal">
+      <span class="contact-row-icon">📚</span>
+      <div class="contact-row-body">
+        <span class="contact-row-label">出版品總覽</span>
+        <span class="contact-row-value">徐筱婷出版演講總覽</span>
+      </div>
+      <span class="contact-row-note">實務手冊・研究文章・演講資料</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <p>徐筱婷 · 社工師 · 性別暴力防治實務工作者 · 2025</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      observer.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal').forEach((el, i) => {
+  el.style.transitionDelay = (i % 4 * 0.08) + 's';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
